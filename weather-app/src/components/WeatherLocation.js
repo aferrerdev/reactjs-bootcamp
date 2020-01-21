@@ -1,4 +1,6 @@
 import React from 'react';
+import Location from './Location';
+import WeatherData from './WeatherData';
 
 /**
  * First functional component
@@ -6,7 +8,8 @@ import React from 'react';
  */
 const WeatherLocation = (props) => (
     <div>
-        Weather Location
+        <Location />
+        <WeatherData />
     </div>
 );
 

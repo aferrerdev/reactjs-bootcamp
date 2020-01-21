@@ -6,10 +6,8 @@ function App() {
   return (
     <div className="App">
      Weather app (aplicación del clima)
-     <WeatherLocation></WeatherLocation>
-     <WeatherLocation></WeatherLocation>
-     <WeatherLocation></WeatherLocation>
-     <WeatherLocation></WeatherLocation>
+     <WeatherLocation />
+     <WeatherLocation />
     </div>
   );
 }
