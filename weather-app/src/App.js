@@ -7,7 +7,6 @@ function App() {
     <div className="App">
      Weather app (aplicación del clima)
      <WeatherLocation />
-     <WeatherLocation />
     </div>
   );
 }
