@@ -16,25 +16,19 @@ class WeatherLocation extends Component {
     constructor() {
         super();
         this.state = {
-            city: 'Buenos Aires',
-            data: {
-                temperature: 5,
-                weatherState: SUN,
-                humidity: 10,
-                wind: '10 ms/s'
-            }
+            city: 'Buenos Aires'
         };
     }
 
     componentDidMount() {
-
+        this.updateWeather();
     }
 
     componentDidUpdate(prevProps, prevState) {
 
     }
 
-    handleUpdateClick = () => {
+    updateWeather = () => {
         fetch(api_weather).then(resolve => {
             return resolve.json();
         }).then(data => {
@@ -48,8 +42,7 @@ class WeatherLocation extends Component {
         return (
             <div className="weatherLocationContainer">
                 <Location city={city} />
-                <WeatherData data={data} />
-                <button onClick={this.handleUpdateClick}>Update</button>
+                { data ? <WeatherData data={data} /> : 'Loading...'}
             </div>
         );
     }
