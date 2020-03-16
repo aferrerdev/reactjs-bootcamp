@@ -1,10 +1,10 @@
+
 .weatherDataContainer {
     background-color: rgba(200, 200, 200, 0.5);
     width: 400px;
     height: 100px;
     line-height: 100px;
     border-radius: 5px;
-    margin: 15px;
 }
 .weatherTemperatureContainer {
     width: 60%;
@@ -15,6 +15,7 @@
     line-height: 28px;
     text-align: left;
     display: inline-block;
+    color: red;
 }
 .temperature {
     font-size: 30px;
