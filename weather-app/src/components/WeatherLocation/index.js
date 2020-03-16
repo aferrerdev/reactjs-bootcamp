@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css'
@@ -12,14 +12,19 @@ const data =  {
 }
 
 /**
- * First functional component
+ * Class component: we need to use class 
+ * components when we need something to do in the lifecycle.
  * @param props 
  */
-const WeatherLocation = (props) => (
-    <div className="weatherLocationContainer">
-        <Location city={"Buenos Aires"} />
-        <WeatherData data={data} />
-    </div>
-);
+class WeatherLocation extends Component {
+    render() {
+        return (
+            <div className="weatherLocationContainer">
+                <Location city={"Buenos Aires"} />
+                <WeatherData data={data} />
+            </div>
+        );
+    }
+}
 
 export default WeatherLocation;
