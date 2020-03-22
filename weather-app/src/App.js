@@ -2,11 +2,19 @@ import React from 'react';
 import './App.css';
 import LocationList from './components/LocationList';
 
-function App() {
+const cities = [
+  "Barcelona,es",
+  "Buenos Aires,ar",
+  "New York,us",
+  "Washington,us",
+  "Bogota,col",
+  "Ciudad de Mexico,mx"
+]
 
+function App() {
   return (
     <div className="App">
-      <LocationList></LocationList>
+      <LocationList cities={cities}></LocationList>
     </div>
   );
 }
