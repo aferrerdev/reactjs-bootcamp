@@ -5,3 +5,10 @@
         margin-bottom: 20px;
     }
 }
+
+.forecast-title {
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}

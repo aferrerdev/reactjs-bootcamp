@@ -21,13 +21,11 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = { city: 'Nueva Ciudad' };
+    this.state = { city: null };
   }
 
   handleSelectedLocation = city => {
-    this.setState({
-        city: city
-    });
+    this.setState({ city });
   }
 
   render() {
@@ -54,7 +52,10 @@ class App extends Component {
             <Col xs={12} md={6}>
               <Paper zdepth={4}>
                 <div className="details">
-                  <ForecastExtended city={city}></ForecastExtended>
+                  {
+                    city &&
+                      <ForecastExtended city={city}></ForecastExtended>
+                  }
                 </div>
               </Paper>
             </Col>
