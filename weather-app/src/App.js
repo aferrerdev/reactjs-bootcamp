@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import LocationList from './components/LocationList';
+import ForecastExtended from './components/ForecastExtended';
 
 const cities = [
   "Barcelona,es",
@@ -18,11 +19,19 @@ const cities = [
 
 class App extends Component {
 
+  constructor() {
+    super();
+    this.state = { city: 'Nueva Ciudad' };
+  }
+
   handleSelectedLocation = city => {
-    console.log(city);
+    this.setState({
+        city: city
+    });
   }
 
   render() {
+    const { city } = this.state;
     return (
       <div className="App">
         <Grid>
@@ -43,9 +52,9 @@ class App extends Component {
               </LocationList>
             </Col>
             <Col xs={12} md={6}>
-              <Paper elevation={4}>
+              <Paper zdepth={4}>
                 <div className="details">
-
+                  <ForecastExtended city={city}></ForecastExtended>
                 </div>
               </Paper>
             </Col>
