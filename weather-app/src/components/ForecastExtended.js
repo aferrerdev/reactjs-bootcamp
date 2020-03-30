@@ -3,20 +3,9 @@ import PropTypes from 'prop-types';
 import ForecastItem from './ForecastItem'
 import './styles.css';
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { url_base_forecast, api_key } from './../constants/api_url'
+import transformForecast from './../services/transformForecast';
 
-const days = [
-    'Lunes',
-    'Martes',
-    'Miércoles',
-    'Jueves',
-    'Viernes'
-];
-const data = {
-    temperature: 10,
-    humidity: 10,
-    weaherState: 'normal',
-    wind: 'normal'
-};
 class ForecastExtended extends Component {
 
     constructor() {
@@ -26,13 +15,25 @@ class ForecastExtended extends Component {
         }
     }
 
-    renderForecastItemDays() {
-        return "Render items";
-        /*
-        return days.map(day => {
-            return <ForecastItem weekDay={day} data={data}></ForecastItem>;
+    componentDidMount() {
+        const url = `${url_base_forecast}?q=${this.props.city}&appid=${api_key}`;
+        fetch(url).then(response => response.json())
+            .then(weather_data => {
+                const forecastData = transformForecast(weather_data);
+                console.log(forecastData);
+                this.setState({ forecastData });
+            });
+    }
+
+    renderForecastItemDays(forecastData) {
+        return forecastData.map(item => {
+            return <ForecastItem
+                key={item.dt}
+                weekDay={item.weekDay} 
+                data={item.data}
+                hour={item.hour}> 
+                </ForecastItem>;
         });
-        */
     }
 
     renderProgress() {
@@ -46,7 +47,7 @@ class ForecastExtended extends Component {
             <div>
                 <h2 className="forecast-title">Pronóstico Extendido para <br></br>{city}</h2>
                 {forecastData ?
-                    this.renderForecastItemDays() :
+                    this.renderForecastItemDays(forecastData) :
                     this.renderProgress()
                 }
             </div>
