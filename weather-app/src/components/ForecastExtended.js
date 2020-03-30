@@ -15,14 +15,25 @@ class ForecastExtended extends Component {
         }
     }
 
-    componentDidMount() {
-        const url = `${url_base_forecast}?q=${this.props.city}&appid=${api_key}`;
+    updateCity = city => {
+        const url = `${url_base_forecast}?q=${city}&appid=${api_key}`;
         fetch(url).then(response => response.json())
             .then(weather_data => {
                 const forecastData = transformForecast(weather_data);
                 console.log(forecastData);
                 this.setState({ forecastData });
             });
+    };
+
+    componentDidMount() {
+        this.updateCity(this.props.city);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.city !== this.props.city) {
+            this.setState({ forecastData: null });
+            this.updateCity(nextProps.city);
+        }
     }
 
     renderForecastItemDays(forecastData) {
