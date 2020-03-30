@@ -26,12 +26,12 @@ class ForecastExtended extends Component {
     }
 
     renderForecastItemDays(forecastData) {
-        return forecastData.map(item => {
+        return forecastData.map(forecast => {
             return <ForecastItem
-                key={item.dt}
-                weekDay={item.weekDay} 
-                data={item.data}
-                hour={item.hour}> 
+                key={`${forecast.weekDay}${forecast.hour}`}
+                weekDay={forecast.weekDay} 
+                data={forecast.data}
+                hour={forecast.hour}> 
                 </ForecastItem>;
         });
     }
