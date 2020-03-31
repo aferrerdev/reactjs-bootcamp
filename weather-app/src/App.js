@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Toolbar from '@material-ui/core/Toolbar';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
+import { setCity } from './actions';
+import { store } from './store';
 
 const cities = [
   "Barcelona,es",
@@ -26,6 +28,7 @@ class App extends Component {
 
   handleSelectedLocation = city => {
     this.setState({ city });
+    store.dispatch(setCity(city));
   }
 
   render() {
