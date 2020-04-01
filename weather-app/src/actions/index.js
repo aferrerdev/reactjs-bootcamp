@@ -48,8 +48,8 @@ export const setWeather = payload => {
             fetch(api_weather).then(resolve => {
                 return resolve.json();
             }).then(weather_data => {
-                const data = transformWeather(weather_data);
-                dispatch(setWeatherCity({ city, data }))
+                const weather = transformWeather(weather_data);
+                dispatch(setWeatherCity({ city, weather }))
             });
         });
         
