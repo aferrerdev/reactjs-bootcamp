@@ -1,6 +1,6 @@
 @media (max-width: 64em) {
     .locationList {
-        max-height: 40vh;
+        max-height: 100vh;
         overflow: auto;
     }
 }

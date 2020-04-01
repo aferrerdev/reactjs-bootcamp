@@ -48,6 +48,6 @@
 
 @media (max-width: 64em) {
   .details {
-    height: 40vh;
+    height: 100vh;
   }
 }
