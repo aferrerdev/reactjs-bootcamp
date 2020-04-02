@@ -1,19 +1,20 @@
-import React from 'react';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import HomeContainer from './containers/HomeContainer';
+
+class App extends Component {
 
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Link to="/customers">Customers</Link><br />
-        <Link to="/customers/3000000">Customer 30.000000</Link><br />
-        <Link to="/customers/3000000/edit">Customer 30.000000</Link>
-      </div>
-    </Router>
-
-  );
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Route exact path="/" component={HomeContainer}></Route>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
