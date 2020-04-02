@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { FECTH_CUSTOMERS } from '../constants';
+import { FECTH_CUSTOMERS } from '../../constants';
 
 const initialState = [];
 

@@ -5,7 +5,8 @@ import CustomersList from '../components/CustomersList';
 import CustomerActions from '../components/CustomerActions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCustomers } from '../actions';
+import { fetchCustomers } from '../redux/actions';
+import { getCustomers } from '../redux/selectors/customers';
 
 class CustomersContainer extends Component {
 
@@ -51,7 +52,7 @@ CustomersContainer.defaultProps = {
 
 const mapDispatchToProps = { fetchCustomers };
 const mapStateToProps = state => ({
-    customers: state.customers
+    customers: getCustomers(state)
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CustomersContainer));
