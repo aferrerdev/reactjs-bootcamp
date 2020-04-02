@@ -14,7 +14,7 @@ const CustomersList = ({customers, urlPath}) => {
                             name={customer.name}
                             editAction={'Editar'}
                             delAction={'Eliminar'}
-                            urlPath={urlPath}
+                            urlPath={`${urlPath}`}
                         ></CustomerListItem>))
                 }
             </div>
