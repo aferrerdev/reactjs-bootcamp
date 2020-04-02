@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppFrame from '../components/AppFrame';
 import { getCustomerByDni } from '../redux/selectors/customers';
 
 class CustomerContainer extends Component {
+
+    renderBody = () => {
+        return (
+            <Route path="/customers/:dni/edit" children={
+                ({ match }) => (match ? <p>Editar cliente {this.props.customer.name}</p> : <p>Datos cliente {this.props.customer.name}</p>)
+            } ></Route>
+            
+        )
+    }
+
     render() {
         return (
             <div>
                 <AppFrame 
                     header={`Cliente ${this.props.dni}`}
-                    body={<p>Datos del cliente {this.props.customer.name}</p>}>
+                    body={this.renderBody()}>
                 </AppFrame>
             </div>
         );
@@ -27,4 +37,4 @@ const mapStateToProps = (state, props) => ({
     customer: getCustomerByDni(state, props)
 });
 
-export default connect(mapStateToProps, null)(CustomerContainer);
+export default withRouter(connect(mapStateToProps, null)(CustomerContainer));
