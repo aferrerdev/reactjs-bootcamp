@@ -18,12 +18,21 @@ const getWeatherCity = payload => ({type: GET_WEATHER_CITY, payload });
  * @param {*} payload 
  */
 export const setSelectedCity = payload => {
-    return dispatch => {
+    return (dispatch, getState) => {
         const url = `${url_base_forecast}?q=${payload}&appid=${api_key}`;
         
         // Activar en el estado un indiacdor de búsqueda de datos.
         dispatch(setCity(payload));
 
+        const state = getState();
+        const date = state.cities[payload] && state.cities[payload].forecastDataDate;
+
+        const now = new Date();
+
+        /** If it was requested less than a minute before */
+        if (date && (now - date) < 1 * 60 * 1000) {
+            return;
+        }
         return fetch(url)
             .then(response => response.json())
             .then(weather_data => {
@@ -33,6 +42,7 @@ export const setSelectedCity = payload => {
                 // Modificar el estado con el resultado de la promise del (fetch)
                 dispatch(setForecastData({city: payload, forecastData }))
             });
+        
     };
 }
 

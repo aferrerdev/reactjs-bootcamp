@@ -6,7 +6,7 @@ export const cities = (state = {}, action) => {
     switch (action.type) {
         case SET_FORECAST_DATA: {
             const { city, forecastData } = action.payload;
-            const data = { ...state[city], forecastData };
+            const data = { ...state[city], forecastData, forecastDataDate: new Date() };
             return { ...state, [city]: data};
         } 
         case GET_WEATHER_CITY: {
