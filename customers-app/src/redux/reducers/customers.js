@@ -3,6 +3,11 @@ import { FECTH_CUSTOMERS } from '../../constants';
 
 const initialState = [];
 
+const handleFetchCustomers = (state, action) => {
+    console.log(action);
+    return [...action.payload];
+}
+
 export const customers = handleActions({
-    [FECTH_CUSTOMERS]: (state, action) => [...action.payload]
+    [FECTH_CUSTOMERS]: handleFetchCustomers
 }, initialState);
