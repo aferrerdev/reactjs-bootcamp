@@ -35,7 +35,6 @@ LocationListContainer.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
-
 /* Old Version
 const mapDispatchToProps = dispatch => ({
     setSelectedCity: value => dispatch(setSelectedCity(value)),
