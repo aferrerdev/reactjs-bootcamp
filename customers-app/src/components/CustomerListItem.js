@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const CustomerListItem = ({name, dni, urlPath, editAction, delAction}) => {
     return (
@@ -20,6 +21,7 @@ const CustomerListItem = ({name, dni, urlPath, editAction, delAction}) => {
 };
 
 CustomerListItem.propTypes = {
+    dni: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     editAction: PropTypes.string.isRequired,
     delAction: PropTypes.string.isRequired,
