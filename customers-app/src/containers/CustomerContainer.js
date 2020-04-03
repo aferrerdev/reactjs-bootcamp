@@ -9,12 +9,23 @@ import CustomerData from '../components/CustomerData';
 
 class CustomerContainer extends Component {
 
+    handleOnBack = () => {
+        this.props.history.goBack();
+    }
+
+    handleSubmit = values => {
+        console.log(JSON.stringify(values));
+    }
+
     renderBody = () => {
         return (
             <Route path="/customers/:dni/edit" children={
                 ({ match }) => {
                     const CustomerControl = match ? CustomerEdit : CustomerData;
-                    return <CustomerControl { ...this.props.customer }/>
+                    return <CustomerControl 
+                        { ...this.props.customer }
+                        onSubmit={this.handleSubmit}
+                        onBack={this.handleOnBack} />
                 }
             } ></Route>
             
