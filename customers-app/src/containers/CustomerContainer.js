@@ -6,7 +6,7 @@ import AppFrame from '../components/AppFrame';
 import { getCustomerByDni } from '../redux/selectors/customers';
 import CustomerEdit from '../components/CustomerEdit';
 import CustomerData from '../components/CustomerData';
-import { fetchCustomers, updateCustomer } from './../redux/actions'
+import { fetchCustomers, updateCustomer } from './../redux/actions';
 
 class CustomerContainer extends Component {
 

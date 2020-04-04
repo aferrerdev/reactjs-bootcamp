@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { setPropsAsInitial } from '../hoc/setPropsAsInitial';
 import CustomerActions from './CustomerActions';
+import { Prompt } from 'react-router-dom';
 
 const isRequired = value => (!value && "Este campo es requerido")
 const isNumber = value => (isNaN(Number(value)) && "Este campo debe ser un número")
@@ -34,14 +35,10 @@ const MyField = ({ input, meta, type, label, name }) => (
 const toNumber = value => (value && Number(value));
 const toUpper = value => (value && value.toUpperCase());
 const toLower = value => (value && value.toLowerCase());
-const onlyGrow = (value, previousValue, values) => {
-    return value && previousValue && (value > previousValue ? value : previousValue);
-};
 
-const CustomerEdit = ({ name, dni, age, handleSubmit, onBack, submitting }) => {
+const CustomerEdit = ({ name, dni, age, handleSubmit, onBack, submitting, pristine, submitSucceeded }) => {
     return (
         <div>
-            <h2>Edición del cliente</h2>
             <form onSubmit={handleSubmit}>
                 <Field 
                     name="name" 
@@ -63,13 +60,15 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, onBack, submitting }) => {
                     validate={[isNumber]}
                     type="number"
                     label="Edad"
-                    parse={toNumber}
-                    normalize={onlyGrow}>
+                    parse={toNumber}>
                 </Field>
                 <CustomerActions>
-                    <button type="submit" disabled={submitting}>Aceptar</button>
+                    <button type="submit" disabled={pristine || submitting}>Aceptar</button>
                     <button onClick={onBack}>Cancelar</button>
                 </CustomerActions>
+                <Prompt 
+                    when={!pristine && !submitSucceeded}
+                    message="Se perderan los datos si continúa"></Prompt>
             </form>
         </div>
     );

@@ -10,3 +10,12 @@ export const apiPut = (url, id, obj) => () => {
     })
     .then(response => response.json())
 };
+
+export const apiPost = (url, obj) => () => {
+    return fetch(`${url}`, {
+        method: 'POST',
+        body: JSON.stringify(obj),
+        headers: new Headers({ 'Content-Type': 'application/json' })
+    })
+    .then(response => response.json())
+};
