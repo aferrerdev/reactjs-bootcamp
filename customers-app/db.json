@@ -7,17 +7,10 @@
       "age": 37
     },
     {
-      "id": "30000000",
-      "dni": "30000000",
-      "name": "LUÍZ MARTÍNEZ 3",
-      "age": 43347823,
-      "isDeleteAllowed": false
-    },
-    {
       "id": "33000000",
       "dni": "33000000",
-      "name": "Otro",
-      "age": 35
+      "name": "Juan Pérez",
+      "age": 37
     }
   ]
 }

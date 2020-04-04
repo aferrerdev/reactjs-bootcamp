@@ -27,7 +27,7 @@ class CustomerContainer extends Component {
     }
 
     handleOnDelete = id => {
-        this.props.deleteCustomer(id).then(v => {
+        return this.props.deleteCustomer(id).then(v => {
             this.props.history.goBack();
         });
     }

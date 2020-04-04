@@ -34,7 +34,8 @@ const handleUpdateCustomer = (state, action) => {
 }
 
 const handleDeleteCustomer = (state, action) => {
-    return [...state, action.payload];
+    console.log(action.payload);
+    return state.filter(customer => customer.id !== action.payload);
 }
 
 export const customers = handleActions({

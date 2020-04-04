@@ -12,6 +12,7 @@ export const updateCustomer = createAction(UPDATE_CUSTOMER, (id, customer) => {
 });
 
 export const insertCustomer = createAction(INSERT_CUSTOMER, (customer) => {
+    customer.id = customer.dni;
     return apiPost(urlCustomers, customer)();
 });
 
