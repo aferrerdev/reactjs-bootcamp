@@ -6,7 +6,7 @@ import AppFrame from '../components/AppFrame';
 import { getCustomerByDni } from '../redux/selectors/customers';
 import CustomerEdit from '../components/CustomerEdit';
 import CustomerData from '../components/CustomerData';
-import { fetchCustomers, updateCustomer } from './../redux/actions';
+import { fetchCustomers, updateCustomer, deleteCustomer } from './../redux/actions';
 
 class CustomerContainer extends Component {
 
@@ -26,25 +26,39 @@ class CustomerContainer extends Component {
         return this.props.updateCustomer(id, values);
     }
 
+    handleOnDelete = id => {
+        this.props.deleteCustomer(id).then(v => {
+            this.props.history.goBack();
+        });
+    }
+
     handleOnSubmitSuccess = () => {
         this.props.history.goBack();
+    }
+
+    renderCustomerControl = (isEdit, isDelete) => {
+        if (this.props.customer) {
+            const CustomerControl = isEdit ? CustomerEdit : CustomerData;
+            return <CustomerControl 
+                { ...this.props.customer }
+                onSubmit={this.handleSubmit}
+                onSubmitSuccess={this.handleOnSubmitSuccess}
+                onBack={this.handleOnBack}
+                isDeleteAllowed={!!isDelete} 
+                onDelete={this.handleOnDelete} />
+        }
+        return null;
     }
 
     renderBody = () => {
         return (
             <Route path="/customers/:dni/edit" children={
-                ({ match }) => {
-                    if (this.props.customer) {
-                        const CustomerControl = match ? CustomerEdit : CustomerData;
-                        return <CustomerControl 
-                            { ...this.props.customer }
-                            onSubmit={this.handleSubmit}
-                            onSubmitSuccess={this.handleOnSubmitSuccess}
-                            onBack={this.handleOnBack} />
-                    }
-                    return null;
-                }
-            } ></Route>
+                ({ match: isEdit }) => (
+                    <Route path="/customers/:dni/delete" children={
+                        ({ match: isDelete }) => (
+                            this.renderCustomerControl(isEdit, isDelete))
+                    } />)
+            }/>
             
         )
     }
@@ -72,4 +86,8 @@ const mapStateToProps = (state, props) => ({
     customer: getCustomerByDni(state, props)
 });
 
-export default withRouter(connect(mapStateToProps, { fetchCustomers, updateCustomer })(CustomerContainer));
+export default withRouter(connect(mapStateToProps, { 
+    fetchCustomers, 
+    updateCustomer,
+    deleteCustomer
+ })(CustomerContainer));

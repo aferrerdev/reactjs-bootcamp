@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { FECTH_CUSTOMERS, INSERT_CUSTOMER, UPDATE_CUSTOMER } from '../../constants';
+import { FECTH_CUSTOMERS, INSERT_CUSTOMER, UPDATE_CUSTOMER, DELETE_CUSTOMER } from '../../constants';
 
 const initialState = [];
 
@@ -33,8 +33,13 @@ const handleUpdateCustomer = (state, action) => {
     return newCustomers;
 }
 
+const handleDeleteCustomer = (state, action) => {
+    return [...state, action.payload];
+}
+
 export const customers = handleActions({
     [FECTH_CUSTOMERS]: handleFetchCustomers,
     [INSERT_CUSTOMER]: handleInsertCustomer,
-    [UPDATE_CUSTOMER]: handleUpdateCustomer
+    [UPDATE_CUSTOMER]: handleUpdateCustomer,
+    [DELETE_CUSTOMER]: handleDeleteCustomer
 }, initialState);

@@ -10,31 +10,14 @@
       "id": "30000000",
       "dni": "30000000",
       "name": "LUÍZ MARTÍNEZ 3",
-      "age": 43347823
+      "age": 43347823,
+      "isDeleteAllowed": false
     },
     {
       "id": "33000000",
       "dni": "33000000",
       "name": "Otro",
       "age": 35
-    },
-    {
-      "name": "PATATA",
-      "dni": "patata",
-      "age": 23,
-      "id": "O3AHJVY"
-    },
-    {
-      "name": "ASDASDASDSADSA",
-      "dni": "asdasdasdas",
-      "age": 23,
-      "id": "Inu2RJv"
-    },
-    {
-      "name": "ASDASDASDAWDAWD",
-      "dni": "asdasdasda",
-      "age": 34,
-      "id": "gyOFI7C"
     }
   ]
 }

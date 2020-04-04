@@ -19,3 +19,11 @@ export const apiPost = (url, obj) => () => {
     })
     .then(response => response.json())
 };
+
+export const apiDelete = (url, id) => () => {
+    return fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({ 'Content-Type': 'application/json' })
+    })
+    .then(response => response.json())
+};

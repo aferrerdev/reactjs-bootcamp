@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
 import { setPropsAsInitial } from '../hoc/setPropsAsInitial';
 import CustomerActions from './CustomerActions';
 import { Prompt } from 'react-router-dom';
 
-const isRequired = value => (!value && "Este campo es requerido")
 const isNumber = value => (isNaN(Number(value)) && "Este campo debe ser un número")
 
 const validate = values => {
@@ -22,10 +20,11 @@ const validate = values => {
     return error;
 }
 
-const MyField = ({ input, meta, type, label, name }) => (
+const renderField = ({ input, meta, type, label, name }) => (
     <div>
         <label htmlFor={name}>{label}</label>
-        <input {...input} type={!type ? 'text' : type} /><br/>
+        <input {...input} 
+            type={!type ? 'text' : type} /><br/>
         {
             meta.touched && meta.error && <span>{meta.error}</span>
         }
@@ -36,13 +35,14 @@ const toNumber = value => (value && Number(value));
 const toUpper = value => (value && value.toUpperCase());
 const toLower = value => (value && value.toLowerCase());
 
-const CustomerEdit = ({ name, dni, age, handleSubmit, onBack, submitting, pristine, submitSucceeded }) => {
+const CustomerEdit = ({ handleSubmit, onBack, submitting, pristine, submitSucceeded, withFocus }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <Field 
+                <Field
+                    withFocus
                     name="name" 
-                    component={MyField}
+                    component={renderField}
                     type="text"
                     parse={toUpper}
                     format={toLower}
@@ -50,13 +50,13 @@ const CustomerEdit = ({ name, dni, age, handleSubmit, onBack, submitting, pristi
                 </Field>
                 <Field 
                     name="dni" 
-                    component={MyField}
+                    component={renderField}
                     type="text"
                     label="DNI">
                 </Field>
                 <Field 
                     name="age"
-                    component={MyField}
+                    component={renderField}
                     validate={[isNumber]}
                     type="number"
                     label="Edad"

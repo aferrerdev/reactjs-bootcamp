@@ -1,6 +1,6 @@
-import { FECTH_CUSTOMERS, INSERT_CUSTOMER } from "./../../constants";
+import { FECTH_CUSTOMERS, INSERT_CUSTOMER, DELETE_CUSTOMER } from "./../../constants";
 import { createAction } from 'redux-actions';
-import { apiGet, apiPost } from './../../api'
+import { apiGet, apiPost, apiDelete } from './../../api'
 import { urlCustomers } from "./../../api/urls";
 import { UPDATE_CUSTOMER } from '../../constants';
 import { apiPut } from './../../api'
@@ -13,4 +13,8 @@ export const updateCustomer = createAction(UPDATE_CUSTOMER, (id, customer) => {
 
 export const insertCustomer = createAction(INSERT_CUSTOMER, (customer) => {
     return apiPost(urlCustomers, customer)();
+});
+
+export const deleteCustomer = createAction(DELETE_CUSTOMER, (id) => {
+    return apiDelete(urlCustomers, id)();
 });
